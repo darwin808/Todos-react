@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Todo3 from "./Todo3";
 import Todo4 from "./Todo4";
 import Todo5 from "./Todo5";
-import Todo10 from "./Todo10";
+import Todo11 from "./Todo11";
 
 const App = () => {
   const [name, setname] = useState("");
@@ -80,7 +80,7 @@ const App = () => {
         </div>
       ))} */}
 
-      <Todo10 />
+      <Todo11 />
     </div>
   );
 };
