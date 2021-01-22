@@ -6,6 +6,8 @@ const Todo18 = () => {
   const [modal, setmodal] = useState(false);
   const [idholder, setidholder] = useState(0);
   const [edit18, setedit18] = useState("");
+  const [currentpage, setcurrentpage] = useState(1);
+  const [postperpage] = useState(10);
 
   const handlesubmit18 = (e) => {
     e.preventDefault();
@@ -26,12 +28,40 @@ const Todo18 = () => {
     const x = collect18.map((e) =>
       e.id === idholder ? { ...e, name18: edit18 } : e
     );
+
     setcollect18(x);
+  };
+
+  //////////////////******~~*******PAGINATION*******~~****** ///////////////////////////////////
+
+  ///////~~8~*~*~*~*~*~*~*~*~ DISPLAY ITEMS PER PAGE *~*~*~*~*~*~*~*~**~///////////
+  const indexoflast = currentpage * postperpage;
+  const indexoffirst = indexoflast - postperpage;
+  const currentpost = collect18.slice(indexoffirst, indexoflast);
+
+  ////////*~*~*~*~*~*~*~*~*~*~ DISPLAY PAGE NUMBER*~*~**~*~*~*~*~*~*~*~*~//////////////
+  const pagenum = [];
+  for (let i = 1; i <= Math.ceil(collect18.length / postperpage); i++) {
+    pagenum.push(i);
+  }
+  const renderpagnum = pagenum.map((e) => (
+    <div
+      onClick={() => {
+        gotopage(e);
+      }}>
+      {e}
+    </div>
+  ));
+
+  //////////~*~**~*~*~*~*~*~*~ GOTO PAGE*~*~*~**~*~*~*~*~*~*~*~*~*//////////////////////
+  const gotopage = (e) => {
+    setcurrentpage(e);
   };
 
   return (
     <div>
       <h1>TODO18</h1>
+      {renderpagnum}
 
       <form action="submit" onSubmit={handlesubmit18}>
         <input
@@ -55,7 +85,7 @@ const Todo18 = () => {
         </form>
       )}
 
-      {collect18.map((e) => (
+      {currentpost.map((e) => (
         <div key={e.id}>
           {e.name18}{" "}
           <button
