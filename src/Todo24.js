@@ -86,7 +86,13 @@ function Todo24() {
       ))}
 
       {pagenum.map((e) => (
-        <div key={e}>{e}</div>
+        <div
+          onClick={() => {
+            setcurrentpage(e);
+          }}
+          key={e}>
+          {e}
+        </div>
       ))}
     </div>
   );
