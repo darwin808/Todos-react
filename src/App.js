@@ -3,7 +3,7 @@ import Todo3 from "./Todo3";
 import Todo4 from "./Todo4";
 import Todo5 from "./Todo5";
 import Todo11 from "./Todo11";
-import Todo18 from "./Todo23";
+import Todo24 from "./Todo24";
 
 const App = () => {
   const [name, setname] = useState("");
@@ -81,7 +81,7 @@ const App = () => {
         </div>
       ))} */}
 
-      <Todo18 />
+      <Todo24 />
     </div>
   );
 };

@@ -1,49 +1,51 @@
 import React, { useState } from "react";
 
-const Todo23 = () => {
+function Todo24() {
   const [name22, setname22] = useState("");
-  const [collec22, setcollec22] = useState([]);
+  const [collect22, setcollect22] = useState([]);
   const [edit22, setedit22] = useState("");
-  const [idholdder22, setidholdder22] = useState(0);
-  const [modal22, setModal22] = useState(false);
+  const [idholder22, setidholder22] = useState(0);
+  const [modal22, setmodal22] = useState(false);
   const [currentpage, setcurrentpage] = useState(1);
   const [postperpage, setpostperpage] = useState(5);
+
   const handlesubmit22 = (e) => {
     e.preventDefault();
-    setcollec22([{ name22, id: Math.random() }, ...collec22]);
+    setcollect22([...collect22, { name22, id: Math.random() }]);
+    console.log(collect22);
   };
 
   const delete22 = (id) => {
-    const neware = collec22.filter((e) => e.id !== id);
-    setcollec22(neware);
+    const neware = collect22.filter((e) => e.id !== id);
+    setcollect22(neware);
   };
 
   const openmodal = (id) => {
-    setidholdder22(id);
-    setModal22(true);
+    setidholder22(id);
+    setmodal22(true);
   };
 
   const handleedit22 = (e) => {
     e.preventDefault();
-    const x = collec22.map((e) =>
-      e.id === idholdder22 ? { ...e, name22: edit22 } : e
+    const x = collect22.map((e) =>
+      e.id === idholder22 ? { ...e, name22: edit22 } : e
     );
-
-    setcollec22(x);
+    setcollect22(x);
   };
 
-  const indexoflast = currentpage * postperpage;
-  const indexoffirst = indexoflast - postperpage;
-  const posts = collec22.slice(indexoffirst, indexoflast);
+  const indexoflast24 = currentpage * postperpage;
+  const indexoffirst24 = indexoflast24 - postperpage;
+  const z = collect22.slice(indexoffirst24, indexoflast24);
 
-  const pageNum = [];
-  for (let i = 1; i <= Math.ceil(collec22.length / postperpage); i++) {
-    pageNum.push(i);
+  const pagenum = [];
+  for (let i = 1; i <= Math.ceil(collect22.length / postperpage); i++) {
+    pagenum.push(i);
   }
 
   return (
     <div>
-      <h1>TODO23</h1>
+      <h1>Todo24</h1>
+
       <form action="submit" onSubmit={handlesubmit22}>
         <input
           type="text"
@@ -53,7 +55,6 @@ const Todo23 = () => {
           }}
         />
       </form>
-
       {modal22 && (
         <form action="submit" onSubmit={handleedit22}>
           <input
@@ -66,14 +67,14 @@ const Todo23 = () => {
         </form>
       )}
 
-      {posts.map((e) => (
+      {collect22.slice(indexoffirst24, indexoflast24).map((e) => (
         <div key={e.id}>
           {e.name22}{" "}
           <button
             onClick={() => {
               delete22(e.id);
             }}>
-            del
+            delete
           </button>
           <button
             onClick={() => {
@@ -84,17 +85,11 @@ const Todo23 = () => {
         </div>
       ))}
 
-      {pageNum.map((e) => (
-        <div
-          onClick={() => {
-            setcurrentpage(e);
-          }}
-          key={e}>
-          {e}
-        </div>
+      {pagenum.map((e) => (
+        <div key={e}>{e}</div>
       ))}
     </div>
   );
-};
+}
 
-export default Todo23;
+export default Todo24;
