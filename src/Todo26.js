@@ -6,6 +6,8 @@ export default function Todo26() {
   const [edit26, setedit26] = useState("");
   const [modal, setmodal] = useState(false);
   const [idholder, setidholder] = useState(0);
+  const [currentpage, setcurrentpage] = useState(1);
+  const [postperpage, setpostperpage] = useState(5);
 
   const handlesubmit = (e) => {
     e.preventDefault();
@@ -30,6 +32,14 @@ export default function Todo26() {
     setcollect26(x);
   };
 
+  const indexoflast = currentpage * postperpage;
+  const indexoffirst = indexoflast - postperpage;
+  const posts = collect26.slice(indexoffirst, indexoflast);
+
+  const pagenum = [];
+  for (let i = 1; i <= Math.ceil(collect26.length / postperpage); i++) {
+    pagenum.push(i);
+  }
   return (
     <div className="Todo26">
       <h1>TODO26</h1>
@@ -56,7 +66,7 @@ export default function Todo26() {
         </form>
       )}
 
-      {collect26.map((e) => (
+      {posts.map((e) => (
         <div key={e.id}>
           {e.name26}{" "}
           <button
@@ -71,6 +81,16 @@ export default function Todo26() {
             }}>
             edit
           </button>
+        </div>
+      ))}
+
+      {pagenum.map((e) => (
+        <div
+          onClick={() => {
+            setcurrentpage(e);
+          }}
+          key={e}>
+          {e}
         </div>
       ))}
     </div>
