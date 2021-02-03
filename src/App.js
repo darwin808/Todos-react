@@ -3,11 +3,12 @@ import Todo3 from "./Todo3";
 import Todo4 from "./Todo4";
 import Todo5 from "./Todo5";
 import Todo11 from "./Todo11";
-import Todo24 from "./Todo29";
+import Todo24 from "./Todo30";
 
 const App = () => {
   const [name, setname] = useState("");
   const [collection, setcollection] = useState([]);
+
   const [editname, seteditname] = useState("");
   const [showedit, setshowedit] = useState(false);
   const [editid, seteditid] = useState();
@@ -38,12 +39,6 @@ const App = () => {
   const handleeditname = (e) => {
     seteditname(e.target.value);
   };
-
-  const edittodo = (id) => {
-    setshowedit(true);
-    seteditid(id);
-  };
-
   return (
     <div className="App">
       {/* <h1>TODOS</h1>
