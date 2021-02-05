@@ -95,7 +95,9 @@ function Todo31() {
       ))}
 
       {jasonData
-        .filter((e) => e.first_name.toLowerCase().includes(serch.toLowerCase()))
+        .filter((e) =>
+          e.first_name.toLowerCase().includes(serch.toLowerCase()``)
+        )
         .map((e) => (
           <div>{e.first_name}</div>
         ))}
